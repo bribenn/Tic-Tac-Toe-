@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+  <link rel="stylesheet" type="text/css" href="style.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+  <script src="main.js" type="text/javascript"></script>
+
+  <title>TicTacToe</title>
+
+</head>
+<body>
+  <div id="x-or-o" class="container">
+    <div class="row">
+      <button type="button" class="btn-o btn btn-default not-selected">Player O</button>
+      <button type="button" class="btn-x btn btn-default not-selected">Player X</button>
+    </div>
+  </div>  
+  <div class="container game-board">
+      <div class="row">
+        <div id="s0" class="square empty"></div>
+        <div id="s1" class="square empty"></div>
+        <div id="s2" class="square empty"></div>
+      </div>
+      <div class="jumbotron jumbotron-fluid winnerO">
+        <div class="container">
+          <h1 class="display-3">Player O is the winner!</h1>
+        </div>
+      </div>
+      <div class="jumbotron jumbotron-fluid winnerX">
+        <div class="container">
+          <h1 class="display-3">Player X is the winner!</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div id="s3" class="square empty"></div>
+        <div id="s4" class="square empty"></div>
+        <div id="s5" class="square empty"></div>
+      </div>
+      <div class="row">
+        <div id="s6" class="square empty"></div>
+        <div id="s7" class="square empty"></div>
+        <div id="s8" class="square empty"></div>
+      </div>
+  </div>
+  <div class='container'>
+    <div class="row">
+      <div class="reset-button">
+        <button type="button" class="reset-button btn btn-default">Play Again</button>
+      </div>
+    </div>
+  </div> 
+</body>
+</html>
