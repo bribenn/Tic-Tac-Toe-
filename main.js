@@ -1,76 +1,74 @@
+function check_equality(a, b, c) {
+  aContent = $("#s" + a).text();
+  bContent = $("#s" + b).text();
+  cContent = $("#s" + c).text();
+  
+  if (aContent && aContent === bContent && aContent === cContent) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function show_winner(winner) {
+  // Convert x to X and o to O
+  var player = $("#s" + winner).text().toUpperCase();
+  $(".winner" + player).show();
+}
 
 $(document).ready(function() {
-	$('.winnerO').hide();
-	$('.winnerX').hide();
+  $('.winnerO').hide();
+  $('.winnerX').hide();
 
-	var vSelected = '';
-	var oWinner = 'Player O is the winner!';
-	var xWinner = 'Player X is the winner!';
+  var vSelected = '';
+  var oWinner = 'Player O is the winner!';
+  var xWinner = 'Player X is the winner!';
 
-	$(".btn").on('click', function() {
-		$(this).removeClass('not-selected');
-		$(this).siblings().addClass('not-selected');
-		const isO = $(this).hasClass('btn-o');
-		if (isO) {
-			vSelected = 'o';	
-		} else {
-			vSelected = 'x'
-		}
-	});
+  // Function to handle click on O and X buttons at top
+  $(".btn").on('click', function() {
+    $(this).removeClass('not-selected');
+    $(this).siblings().addClass('not-selected');
+    const isO = $(this).hasClass('btn-o');
+    if (isO) {
+      vSelected = 'o';
+    } else {
+      vSelected = 'x'
+    }
+  });
 
-	$('.square').on('click', function() {
-      $(this).text(vSelected);
-      	if (vSelected === 'o') {
-      		$(this).addClass('hasO').removeClass('hasX');
-      	} else {
-      		$(this).addClass('hasX').removeClass('hasO');
-      	}
-				
+  // Function to handle clicking of each square
+  $('.square').on('click', function() {
+    $(this).text(vSelected);
 
-				$('.square').each(function() {
-				    if ($("#s0").hasClass('hasO') && $("#s1").hasClass('hasO') && $("#s2").hasClass('hasO')) {
-						$(".winnerO").show();
-					} else if ($("#s3").hasClass('hasO') && $("#s4").hasClass('hasO') && $("#s5").hasClass('hasO')){
-						$(".winnerO").show();
-					} else if ($("#s6").hasClass('hasO') && $("#s7").hasClass('hasO') && $("#s8").hasClass('hasO')){
-						$(".winnerO").show();
-					} else if ($("#s0").hasClass('hasO') && $("#s3").hasClass('hasO') && $("#s6").hasClass('hasO')){
-						$(".winnerO").show();
-					} else if ($("#s1").hasClass('hasO') && $("#s4").hasClass('hasO') && $("#s7").hasClass('hasO')){
-						$(".winnerO").show();
-					} else if ($("#s2").hasClass('hasO') && $("#s5").hasClass('hasO') && $("#s8").hasClass('hasO')){
-						$(".winnerO").show();
-					} else if ($("#s0").hasClass('hasO') && $("#s4").hasClass('hasO') && $("#s8").hasClass('hasO')){
-						$(".winnerO").show();
-					} else if ($("#s2").hasClass('hasO') && $("#s4").hasClass('hasO') && $("#s6").hasClass('hasO')){
-						$(".winnerO").show();
-					} else if ($("#s0").hasClass('hasX') && $("#s1").hasClass('hasX') && $("#s2").hasClass('hasX')) {
-						$(".winnerX").show();
-					} else if ($("#s3").hasClass('hasX') && $("#s4").hasClass('hasX') && $("#s5").hasClass('hasX')){
-						$(".winnerX").show();
-					} else if ($("#s6").hasClass('hasX') && $("#s7").hasClass('hasX') && $("#s8").hasClass('hasX')){
-						$(".winnerX").show();
-					} else if ($("#s0").hasClass('hasX') && $("#s3").hasClass('hasX') && $("#s6").hasClass('hasX')){
-						$(".winnerX").show();
-					} else if ($("#s1").hasClass('hasX') && $("#s4").hasClass('hasX') && $("#s7").hasClass('hasX')){
-						$(".winnerX").show();
-					} else if ($("#s2").hasClass('hasX') && $("#s5").hasClass('hasX') && $("#s8").hasClass('hasX')){
-						$(".winnerX").show();
-					} else if ($("#s0").hasClass('hasX') && $("#s4").hasClass('hasX') && $("#s8").hasClass('hasX')){
-						$(".winnerX").show();
-					} else if ($("#s2").hasClass('hasX') && $("#s4").hasClass('hasX') && $("#s6").hasClass('hasX')){
-						$(".winnerX").show();
-					} else {
-						console.log('keep playing');
-					}
-				});
-		});
-	$('.reset-button').on('click', function() {
-		location.reload();
-	});
+    // Check if anyone won
+    var currentWinner = '';
+
+    // Horizontal Checks
+    if        (check_equality(0, 1, 2)) {
+      show_winner(0);
+    } else if (check_equality(3, 4, 5)) {
+      show_winner(3);
+    } else if (check_equality(6, 7, 8)) {
+      show_winner(6);
+    }
+    // Vertical Checks
+      else if (check_equality(0, 3, 6)) {
+      show_winner(0);
+    } else if (check_equality(1, 4, 5)) {
+      show_winner(1);
+    } else if (check_equality(2, 5, 8)) {
+      show_winner(2);
+    }
+    // Diagnoal checks
+      else if (check_equality(0, 4, 8)) {
+      show_winner(0);
+    } else if (check_equality(2, 4, 6)) {
+      show_winner(2);
+    }
+  });
+
+  $('.reset-button').on('click', function() {
+    location.reload();
+  });
 });
-	
-	
-
-
 
