@@ -1,3 +1,21 @@
+function check_equality(a, b, c) {
+  aContent = $("#s" + a).text();
+  bContent = $("#s" + b).text();
+  cContent = $("#s" + c).text();
+  
+  if (aContent && aContent === bContent && aContent === cContent) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function show_winner(winner) {
+  // Convert x to X and o to O
+  var player = $("#s" + winner).text().toUpperCase();
+  $(".winner" + player).show();
+}
+
 $(document).ready(function() {
   $('.winnerO').hide();
   $('.winnerX').hide();
@@ -26,33 +44,26 @@ $(document).ready(function() {
     var currentWinner = '';
 
     // Horizontal Checks
-    if ($("#s0").text() && $("#s0").text() == $("#s1").text() && $("#s0").text() == $("#s2").text()) {
-      currentWinner = $("#s0").text();
-    } else if ($("#s3").text() && $("#s3").text() == $("#s4").text() && $("#s3").text() == $("#s5").text()) {
-      currentWinner = $("#s3").text();
-    } else if ($("#s6").text() && $("#s6").text() == $("#s7").text() && $("#s6").text() == $("#s8").text()) {
-      currentWinner = $("#s6").text();
+    if        (check_equality(0, 1, 2)) {
+      show_winner(0);
+    } else if (check_equality(3, 4, 5)) {
+      show_winner(3);
+    } else if (check_equality(6, 7, 8)) {
+      show_winner(6);
     }
     // Vertical Checks
-    else   if ($("#s0").text() && $("#s0").text() == $("#s3").text() && $("#s0").text() == $("#s6").text()) {
-      currentWinner = $("#s0").text();
-    } else if ($("#s1").text() && $("#s1").text() == $("#s4").text() && $("#s1").text() == $("#s7").text()) {
-      currentWinner = $("#s1").text();
-    } else if ($("#s2").text() && $("#s2").text() == $("#s5").text() && $("#s2").text() == $("#s8").text()) {
-      currentWinner = $("#s2").text();
+      else if (check_equality(0, 3, 6)) {
+      show_winner(0);
+    } else if (check_equality(1, 4, 5)) {
+      show_winner(1);
+    } else if (check_equality(2, 5, 8)) {
+      show_winner(2);
     }
-    // Diagonal Checks
-    else   if ($("#s0").text() && $("#s0").text() == $("#s4").text() && $("#s0").text() == $("#s8").text()) {
-      currentWinner = $("#s0").text();
-    } else if ($("#s2").text() && $("#s2").text() == $("#s4").text() && $("#s2").text() == $("#s6").text()) {
-      currentWinner = $("#s2").text();
-    }
-
-    currentWinner = currentWinner.toUpperCase();
-    if (currentWinner) {
-      $(".winner" + currentWinner).show();
-    } else {
-      console.log('keep playing');
+    // Diagnoal checks
+      else if (check_equality(0, 4, 8)) {
+      show_winner(0);
+    } else if (check_equality(2, 4, 6)) {
+      show_winner(2);
     }
   });
 
