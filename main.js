@@ -27,23 +27,22 @@ $(document).ready(function() {
      	}
 				
 		
-				    if ($("#s0").contents() === $("#s1").contents() && $("#s1").contents() === $("#s2").contents()) {
-				    	console.log("you win");
-						$(".winner.(contents())").show();
-					   } else if ($("#s3").contents() === $("#s4").contents() === $("#s5").contents()){
-					   	$(".winner.(contents)").show();
-					   } else if ($("#s6").contents() === $("#s7").contents() === $("#s8").contents()){
-					   	$(".winner.(contents)").show();
-					   } else if ($("#s0").contents() === $("#s3").contents() === $("#s6").contents()){
-					   	$(".winner.(contents)").show();
-					   } else if ($("#s1").contents() === $("#s4").contents() === $("#s7").contents()){
-					 	$(".winner.(contents)").show();
-					   } else if ($("#s2").contents() === $("#s5").contents() === $("#s8").contents()){
-					 	$(".winner.(contents)").show();
-					   } else if ($("#s0").contents() === $("#s4").contents() === $("#s8").contents()){
-					   	$(".winner.(contents)").show();
-					   } else if ($("#s2").contents() === $("#s4").contents() === $("#s6").contents()){
-					 	$(".winner.(contents)").show();
+				    	if ($("#s0").text() === $("#s1").text() && $("#s1").text() === $("#s2").text()) {
+				    	// console.log(".text() win"); NEED LOGIC FOR showing "winnerO" or "winnerX" class
+					   } else if ($("#s3").text() === $("#s4").text() && $("#s4").text() === $("#s5").text()){
+					   	console.log("O win");
+					   } else if ($("#s6").text() === $("#s7").text() && $("#s7").text() === $("#s8").text()){
+					   	console.log("O win");
+					   } else if ($("#s0").text() === $("#s3").text() && $("#s3").text() === $("#s6").text()){
+					   	console.log("O win");
+					   } else if ($("#s1").text() === $("#s4").text() && $("#s4").text() === $("#s7").text()){
+					 	console.log("O win");
+					   } else if ($("#s2").text() === $("#s5").text() && $("#s5").text() === $("#s8").text()){
+					 	console.log("O win");
+					   } else if ($("#s0").text() === $("#s4").text() && $("#s4").text() === $("#s8").text()){
+					   	console.log("O win");
+					   } else if ($("#s2").text() === $("#s4").text() && $("#s4").text() === $("#s6").text()){
+					 	console.log("O win");
 					   } else {
 						console.log('keep playing');
 					   }
