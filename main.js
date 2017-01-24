@@ -12,7 +12,7 @@ $(document).ready(function() {
     $(this).siblings().addClass('not-selected');
     const isO = $(this).hasClass('btn-o');
     if (isO) {
-      vSelected = 'o';	
+      vSelected = 'o';
     } else {
       vSelected = 'x'
     }
@@ -21,45 +21,36 @@ $(document).ready(function() {
   // Function to handle clicking of each square
   $('.square').on('click', function() {
     $(this).text(vSelected);
-    if (vSelected === 'o') {
-      $(this).addClass('hasO').removeClass('hasX');
-    } else {
-      $(this).addClass('hasX').removeClass('hasO');
-    }
 
     // Check if anyone won
-    if ($("#s0").hasClass('hasO') && $("#s1").hasClass('hasO') && $("#s2").hasClass('hasO')) {
-      $(".winnerO").show();
-    } else if ($("#s3").hasClass('hasO') && $("#s4").hasClass('hasO') && $("#s5").hasClass('hasO')){
-      $(".winnerO").show();
-    } else if ($("#s6").hasClass('hasO') && $("#s7").hasClass('hasO') && $("#s8").hasClass('hasO')){
-      $(".winnerO").show();
-    } else if ($("#s0").hasClass('hasO') && $("#s3").hasClass('hasO') && $("#s6").hasClass('hasO')){
-      $(".winnerO").show();
-    } else if ($("#s1").hasClass('hasO') && $("#s4").hasClass('hasO') && $("#s7").hasClass('hasO')){
-      $(".winnerO").show();
-    } else if ($("#s2").hasClass('hasO') && $("#s5").hasClass('hasO') && $("#s8").hasClass('hasO')){
-      $(".winnerO").show();
-    } else if ($("#s0").hasClass('hasO') && $("#s4").hasClass('hasO') && $("#s8").hasClass('hasO')){
-      $(".winnerO").show();
-    } else if ($("#s2").hasClass('hasO') && $("#s4").hasClass('hasO') && $("#s6").hasClass('hasO')){
-      $(".winnerO").show();
-    } else if ($("#s0").hasClass('hasX') && $("#s1").hasClass('hasX') && $("#s2").hasClass('hasX')) {
-      $(".winnerX").show();
-    } else if ($("#s3").hasClass('hasX') && $("#s4").hasClass('hasX') && $("#s5").hasClass('hasX')){
-      $(".winnerX").show();
-    } else if ($("#s6").hasClass('hasX') && $("#s7").hasClass('hasX') && $("#s8").hasClass('hasX')){
-      $(".winnerX").show();
-    } else if ($("#s0").hasClass('hasX') && $("#s3").hasClass('hasX') && $("#s6").hasClass('hasX')){
-      $(".winnerX").show();
-    } else if ($("#s1").hasClass('hasX') && $("#s4").hasClass('hasX') && $("#s7").hasClass('hasX')){
-      $(".winnerX").show();
-    } else if ($("#s2").hasClass('hasX') && $("#s5").hasClass('hasX') && $("#s8").hasClass('hasX')){
-      $(".winnerX").show();
-    } else if ($("#s0").hasClass('hasX') && $("#s4").hasClass('hasX') && $("#s8").hasClass('hasX')){
-      $(".winnerX").show();
-    } else if ($("#s2").hasClass('hasX') && $("#s4").hasClass('hasX') && $("#s6").hasClass('hasX')){
-      $(".winnerX").show();
+    var currentWinner = '';
+
+    // Horizontal Checks
+    if ($("#s0").text() && $("#s0").text() == $("#s1").text() && $("#s0").text() == $("#s2").text()) {
+      currentWinner = $("#s0").text();
+    } else if ($("#s3").text() && $("#s3").text() == $("#s4").text() && $("#s3").text() == $("#s5").text()) {
+      currentWinner = $("#s3").text();
+    } else if ($("#s6").text() && $("#s6").text() == $("#s7").text() && $("#s6").text() == $("#s8").text()) {
+      currentWinner = $("#s6").text();
+    }
+    // Vertical Checks
+    else   if ($("#s0").text() && $("#s0").text() == $("#s3").text() && $("#s0").text() == $("#s6").text()) {
+      currentWinner = $("#s0").text();
+    } else if ($("#s1").text() && $("#s1").text() == $("#s4").text() && $("#s1").text() == $("#s7").text()) {
+      currentWinner = $("#s1").text();
+    } else if ($("#s2").text() && $("#s2").text() == $("#s5").text() && $("#s2").text() == $("#s8").text()) {
+      currentWinner = $("#s2").text();
+    }
+    // Diagonal Checks
+    else   if ($("#s0").text() && $("#s0").text() == $("#s4").text() && $("#s0").text() == $("#s8").text()) {
+      currentWinner = $("#s0").text();
+    } else if ($("#s2").text() && $("#s2").text() == $("#s4").text() && $("#s2").text() == $("#s6").text()) {
+      currentWinner = $("#s2").text();
+    }
+
+    currentWinner = currentWinner.toUpperCase();
+    if (currentWinner) {
+      $(".winner" + currentWinner).show();
     } else {
       console.log('keep playing');
     }
